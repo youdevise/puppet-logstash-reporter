@@ -54,7 +54,7 @@ DESCRIPTION
     event["@message"] = "puppet run on #{self.host}"
 
     begin
-      report_results event.to_json
+      report_results JSON.pretty_generate(event)
     rescue Exception => e
       Puppet.err "Failed to write to logstash: #{e.message}"
     end
