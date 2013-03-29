@@ -44,7 +44,12 @@ DESCRIPTION
     event["@fields"]["status"] = self.status
     #event["@fields"]["start_time"] = log.time
     event["@fields"]["end_time"] = time_now
-    event["@fields"]["metrics"] = metrics || {}
+    event["@fields"]["metrics"] = {}
+    #metrics.each do |k,v|
+    #  event["@fields"]["metrics"][k] = {
+    #    v.name => v.values
+    #  }
+    #end
     event["@fields"]["logs"] = msgs
     event["@message"] = "puppet run on #{self.host}"
 
