@@ -45,11 +45,16 @@ DESCRIPTION
     #event["@fields"]["start_time"] = log.time
     event["@fields"]["end_time"] = time_now
     event["@fields"]["metrics"] = {}
-    #metrics.each do |k,v|
+    metrics.each do |k,v|
+      event["@fields"]["metrics"][k] = {}
+      v.values.each do |val|
+        event["@fields"]["metrics"][k][val[1]] = val[2]
+      end
+    #  event["@fields"]["metrics"][k] = v.values
     #  event["@fields"]["metrics"][k] = {
     #    v.name => v.values
     #  }
-    #end
+    end
     event["@fields"]["logs"] = msgs
     event["@message"] = "puppet run on #{self.host}"
 
